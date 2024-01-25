@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+<body id="background">
+    <div class=" m-auto flex flex-col justify-center items-center h-screen w-screen border-2 border-black">
+        <h1 id="content" class="text-start text-3xl text-cyan-200 " ></h1>
+        <h1 id="loggedIn" class="text-3xl text-cyan-200"></h1>
+        <button class="text-black mt-5 bg-cyan-200 hover:bg-cyan-500  font-serif font-bold rounded-lg text-xl px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button" id="signoutBtn">Home</button>
+    </div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        // refrences
+        let signOutBtn = document.getElementById("signoutBtn")
+        let userCreds = JSON.parse(sessionStorage.getItem("user-creds"))
+        let userInfo = JSON.parse(sessionStorage.getItem("user-info"))
+        let content = document.getElementById("content")
+        let loggedIn = document.getElementById("loggedIn")
+        // function
+        let signOut = () => {
+            sessionStorage.removeItem("user-creds")
+            sessionStorage.removeItem('user-info')
+            window.location.href = "index.html"
+        }
+        let checkCred = () => {
+            if (!sessionStorage.getItem("user-creds")) {
+                window.location.href = "index.html"
+            } else {
+                content.innerHTML=`Welcome! ${userInfo.firstName.toUpperCase()} ${userInfo.lastName.toUpperCase()}`
+                loggedIn.innerHTML= `You are successfully logged in`
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: `Welcome 
+                    ${userInfo.firstName} ${userInfo.lastName}`,
+                    showConfirmButton: true,
+                    // timer: 1500
+                });
+
+            }
+        }
+        // function assign
+        window.onload = checkCred
+        signOutBtn.onclick = signOut
+    </script>
+</body>
+
+</html>

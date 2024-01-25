@@ -1,0 +1,55 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    margin: 30px auto;
+}
+img {
+    width: 250px;
+    margin: 0 auto;
+}
+input {
+    width: 150px;
+    color: brown;
+    background-color: #DCE1EB;
+    border: 0;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 6px auto;
+}
+button {
+    width: 150px;
+    color: rgb(232, 222, 222);
+    background-color: brown;
+    border: 0;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 6px auto;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+ul li {
+    background-color: #d3abeb;
+    padding: 10px;
+    /* flex-grow: 1; */
+    border-radius: 8px;
+    box-shadow: 0px 1px 4px grey;
+    text-align: center;
+}
+#add-to-cart{
+    position: relative;
+    left: 35px;
+}

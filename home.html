@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> -->
+    <!-- <link rel="manifest" href="/site.webmanifest"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body style="background-color: rgb(237, 198, 237);">
+        <!-- Navbar -->
+<nav class="navbar navbar-inverse" style="background-color: rgb(128, 0, 128);">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" style="color: white;" href="#">Book Management</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="forhover" ><a style="color: white; font-weight: bold;" href="index.html">Home</a></li>
+          <li class="forhover" >
+            <a  style="color: white; font-weight:  bold;" class="dropdown-toggle" data-toggle="dropdown" href="#">Favourites</a>
+          </li>
+          <!-- <li><a style="color: white;" href="#">Page 2</a></li>
+          <li><a style="color: white;" href="#">Page 3</a></li> -->
+        </ul>
+        <ul class="nav navbar-nav navbar-right ">
+          <li class="forhover"><a style="color: white;" href="signUp.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li class="forhover"> <a style="color: white;" href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <!-- Navbar end -->
+    <div class="container">
+        <input type="text" name="" id="title-field" placeholder="Book Name">     
+        <input type="text" name="" id="author-field" placeholder="Author Name">
+        <input type="text" name="" id="image-field" placeholder="Paste image URL here">
+        <input type="text" name="" id="price-field" placeholder="Price">
+          <a href="booklist.html"> <button id="add-to-cart">Add to Favourites </button></a>
+    </div>
+
+    <script src="index.js" type="module"></script>
+</body>
+
+</html>
+

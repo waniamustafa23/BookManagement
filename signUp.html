@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="input.css">
+  <script src="https://kit.fontawesome.com/6b90a087a7.js" crossorigin="anonymous"></script>
+</head>
+
+<body
+  style="background: linear-gradient(rgba(228, 218, 228, 0.5), rgba(128, 0, 128, 0.5)), url(images/getStarted.jfif); background-repeat: no-repeat; background-size: 100%;">
+
+  <!-- Sign up Div -->
+  <div class="bg-purple-300 rounded px-3 m-auto sm:w-1/2 sm:h-full md:h-auto md:mt-10 md:mb-10 shadow-2xl"
+    id="signupForm">
+    <div class="flex justify-between py-1">
+      <h1 class="font-sans text-4xl font-bold text-purple-800 mt-5 mx-auto">Sign Up</h1>
+      <a href="index.html"><i class="fa-solid fa-xmark text-2xl font-bold cursor-pointer"></i></a>
+    </div>
+    <center>
+      <h3 class="font-sans text-xl text-purple-800 my-2">Register Yourself ;)</h3>
+    </center>
+    <hr>
+    <div class="flex justify-between mb-2 mt-5">
+      <input class="bg-gray-200 border border-gray-300 p-2 rounded-lg w-full" type="text" placeholder="First Name"
+        id="firstNameInp">
+      <input class="bg-gray-200 border border-gray-300 ms-2 p-2 rounded-lg w-full" type="text" placeholder="Surname"
+        id="lastNameInp">
+    </div>
+    <input class="bg-gray-200 border border-gray-300 w-full p-2 rounded-lg mb-2" type="email"
+      placeholder="Email address" id="emailInp">
+    <input class="bg-gray-200 border border-gray-300 w-full p-2 rounded-lg mb-2" type="password" id="passInp"
+      placeholder="New password">
+    <label class="text-purple-800" for="dateInp">Date Of Birth <i class="fa-solid fa-circle-question"></i></label>
+    <input type="date" id="dateInp" max="2006-12-31"
+      class="bg-gray-200 border border-gray-300 w-full p-2 rounded-lg mb-2">
+    <label class="text-purple-800" for="">Gender <i class="fa-solid fa-circle-question"></i></label>
+    <div class="flex justify-between mb-4">
+      <div class="p-2 rounded-lg w-1/4 ml-36 text-purple-800 bg-gray-200 border border-gray-300 flex justify-between">
+        <p>Female</p><input type="radio" name="gender">
+      </div>
+      <div
+        class="ms-2 p-2 text-purple-800 rounded-lg w-1/4 mx-auto bg-gray-200 border border-gray-300 flex justify-between">
+        <p>Male</p><input type="radio" name="gender">
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <button id="regbtn"
+        class="max-w-full mx-auto px-3 border border-gray-300 bg-purple-800 py-2 ps-2 rounded-lg my-2 text-white font-semibold text-lg hover:bg-purple-500">Create
+        New User</button>
+      <p class="text-lg my-4 text-purple-800 text-center">Already have an account? <a href="login.html"
+          class="text-center font-medium text-lg underline dark:text-purple-500 hover:no-underline mb-3">Sign In</a></p>
+    </div>
+  </div>
+</body>
+
+
+
+
+
+<!-- <script src="app.js" type="module"></script> -->
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js'
+  import { getDatabase, ref, set, get, child } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js'
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js'
+
+
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDyTgmqcPKmbJ2h8oHv3bWfVwUcic2ZSx4",
+    authDomain: "new-project-a153a.firebaseapp.com",
+    projectId: "new-project-a153a",
+    storageBucket: "new-project-a153a.appspot.com",
+    messagingSenderId: "879050200715",
+    appId: "1:879050200715:web:aa449712598ef2ee9ee68e"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase();
+  const auth = getAuth(app)
+  const dbRef = ref(db)
+
+  // refrences
+  const email = document.getElementById('emailInp')
+  const pass = document.getElementById('passInp')
+  const firstName = document.getElementById('firstNameInp')
+  const lastName = document.getElementById("lastNameInp")
+  let regbtn = document.getElementById('regbtn')
+  let dateInp = document.getElementById('dateInp')
+  let gender = document.getElementsByName('gender')
+
+
+
+  // for registration
+  const registerUser = () => {
+
+    createUserWithEmailAndPassword(auth, email.value, pass.value)
+      .then((userCredential) => {
+        set(ref(db, 'UsersAuthList/' + userCredential.user.uid), {
+          firstName: firstName.value,
+          lastName: lastName.value
+        })
+        console.log("user ===>", userCredential);
+
+
+
+        Swal.fire({
+          // title: "Good job!",
+          text: "Your account has been created successfully!",
+          icon: "success"
+        })
+        email.value = ""
+        pass.value = ""
+        firstName.value = ""
+        lastName.value = ""
+        dateInp.value = ""
+
+      })
+
+      .catch((error) => {
+        console.log("errorMessage ===>", error.message);
+        console.log("errorCode ===>", error.code);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
+
+        });
+      })
+
+
+
+  }
+
+  regbtn.onclick = registerUser
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
